@@ -32,7 +32,7 @@ function showPlayer(musicKey) {
   const player = document.getElementById('player-container');
   const data = musicData[musicKey];
 
-  // Seleção aleatória de imagem
+  // Seleção de imagem aleatória simplificada
   const randomIndex = Math.floor(Math.random() * photos.length);
   const randomPhoto = photos[randomIndex];
 
@@ -46,6 +46,7 @@ function showPlayer(musicKey) {
 
   const audio = document.getElementById('audio-player');
   audio.load();
+
   audio.onerror = () => {
     document.getElementById('error-message').innerText = "Erro ao carregar o áudio. Verifique o caminho do arquivo ou o formato.";
   };
@@ -54,16 +55,12 @@ function showPlayer(musicKey) {
 }
 
 function closePlayer() {
-  const playerContainer = document.getElementById('player-container');
-  playerContainer.style.display = 'none';
-  
-  // Remove classe active dos itens de música
+  document.getElementById('player-container').style.display = 'none';
+  // Remover classe active de todos os itens de música
   const musicItems = document.querySelectorAll('.music-item');
   musicItems.forEach(item => item.classList.remove('active'));
-
-  // Remove a classe do menu flutuante, se estiver ativa
-  const musicList = document.querySelector('.music-list');
-  musicList.classList.remove('floating-menu');
+  // Também remover o menu flutuante
+  document.querySelector('.music-list').classList.remove('floating-menu');
 }
 
 function handleImageError() {
@@ -72,31 +69,36 @@ function handleImageError() {
   document.getElementById('error-message').innerText = "Erro ao carregar a imagem. Verifique o caminho do arquivo ou o formato.";
 }
 
+// Adicionar event listeners depois que o conteúdo da página estiver carregado
 document.addEventListener("DOMContentLoaded", function() {
-  // Configura os event listeners para os itens de música
+  // Event listeners para os itens de música
   const musicItems = document.querySelectorAll('.music-item');
   musicItems.forEach(item => {
     item.addEventListener('click', function() {
+      // Remover classe active de todos os itens
       musicItems.forEach(i => i.classList.remove('active'));
+      // Adicionar classe active ao item clicado
       item.classList.add('active');
+
       const musicKey = item.getAttribute('data-music-key');
       showPlayer(musicKey);
     });
   });
 
-  // Listener para o botão fechar
+  // Event listener para o botão fechar
   document.getElementById('close-player').addEventListener('click', closePlayer);
 
-  // Listener para erro na imagem
-  document.getElementById('photo').addEventListener('error', handleImageError);
+  // Event listener para erro na imagem
+  const img = document.getElementById('photo');
+  img.addEventListener('error', handleImageError);
 
-  // Listener para scroll: fixa o menu de músicas quando o player estiver ativo e o topo dele atingir 20px da viewport
+  // Listener para scroll: transforma o menu em flutuante quando o topo do player sai da viewport
   window.addEventListener('scroll', function() {
     const playerContainer = document.getElementById('player-container');
     const musicList = document.querySelector('.music-list');
-
+    // Se o player estiver visível, aplica o menu flutuante
     if (playerContainer.style.display === 'block') {
-      if (playerContainer.getBoundingClientRect().top <= 20) {
+      if (playerContainer.getBoundingClientRect().top <= 0) {
         musicList.classList.add('floating-menu');
       } else {
         musicList.classList.remove('floating-menu');
