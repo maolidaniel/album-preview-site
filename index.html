@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preview do Álbum - Writing Different Stories, Living Long Nights</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            text-align: center;
+        }
+        header {
+            background-color: #222;
+            color: #fff;
+            padding: 20px;
+        }
+        .music-list {
+            margin: 20px auto;
+            max-width: 600px;
+        }
+        .music-item {
+            background-color: #fff;
+            margin: 10px;
+            padding: 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .player-container {
+            display: none;
+            margin: 20px auto;
+            max-width: 600px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        img {
+            width: 100%;
+            border-radius: 8px;
+        }
+        .error {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Writing Different Stories, Living Long Nights</h1>
+        <p>Descubra os previews do álbum e as histórias por trás das músicas.</p>
+    </header>
+
+    <div class="music-list">
+        <div class="music-item" onclick="showPlayer('backInLove')">Back In Love</div>
+        <div class="music-item" onclick="showPlayer('backToYou')">Back To You</div>
+        <div class="music-item" onclick="showPlayer('amsterdam')">Amsterdam</div>
+    </div>
+
+    <div id="player-container" class="player-container">
+        <h2 id="music-title">Título da Música</h2>
+        <audio id="audio-player" controls>
+            <source id="audio-source" src="" type="audio/mpeg">
+            Seu navegador não suporta o player de áudio.
+        </audio>
+        <img id="photo" src="" alt="Foto aleatória" onerror="handleImageError()">
+        <p id="photo-story">História da foto aqui.</p>
+        <p id="music-description">Descrição da música aqui.</p>
+        <p id="error-message" class="error"></p>
+        <button onclick="closePlayer()">Fechar</button>
+    </div>
+
+    <script>
+        const musicData = {
+            backInLove: {
+                title: "Back In Love",
+                audio: "./music/Daniel_Maoli_Back_in_Love.mp3",
+                description: "Back In Love é sobre se apaixonar novamente por um amor antigo."
+            },
+            backToYou: {
+                title: "Back To You",
+                audio: "./music/Daniel_Maoli_Back_To_You.mp3",
+                description: "Back To You fala sobre os sentimentos de um término de relacionamento e a vontade de querer reviver o que era bom dessa história."
+            },
+            amsterdam: {
+                title: "Amsterdam",
+                audio: "./music/Daniel_Maoli_Amsterdam.mp3",
+                description: "Amsterdam é uma homenagem à cidade e à viagem feita com amigos. Criada de forma despretensiosa durante uma noite divertida, a música celebra a espontaneidade e os momentos inesquecíveis vividos lá."
+            }
+        };
+
+        const photos = [
+            { src: "./images/IMG_0792.JPG", story: "Festival iluminado com fogos e multidão animada." },
+            { src: "./images/IMG_2329_2.JPG", story: "Amigos reunidos curtindo a noite juntos." },
+            { src: "./images/IMG_0792_2.JPG", story: "Momento inesquecível durante o show." },
+            { src: "./images/IMG_1704_2.JPG", story: "Galera no bar celebrando a amizade." },
+            { src: "./images/IMG_1708_2.JPG", story: "Noite descontraída e cheia de risadas." },
+            { src: "./images/IMG_4187_2.JPG", story: "Show com luzes vibrantes e muita energia." },
+            { src: "./images/IMG_0187_2.JPG", story: "Selfie divertida com os amigos." },
+            { src: "./images/IMG_9478_2.JPG", story: "Noite animada entre amigos." },
+            { src: "./images/IMG_2562_2.JPG", story: "Abraço carinhoso com o cachorro." }
+        ];
+
+        function showPlayer(musicKey) {
+            const player = document.getElementById('player-container');
+            const data = musicData[musicKey];
+            let randomPhoto;
+
+            // Tentar selecionar uma imagem válida
+            for (let i = 0; i < photos.length; i++) {
+                randomPhoto = photos[Math.floor(Math.random() * photos.length)];
+                if (randomPhoto && randomPhoto.src) break;
+            }
+
+            document.getElementById('music-title').innerText = data.title;
+            document.getElementById('audio-source').src = data.audio;
+            document.getElementById('photo').src = randomPhoto.src;
+            document.getElementById('photo-story').innerText = randomPhoto.story;
+            document.getElementById('music-description').innerText = data.description;
+            document.getElementById('error-message').innerText = "";
+
+            const audio = document.getElementById('audio-player');
+            audio.load();
+
+            audio.onerror = () => {
+                document.getElementById('error-message').innerText = "Erro ao carregar o áudio. Verifique o caminho do arquivo ou o formato.";
+            };
+
+            player.style.display = 'block';
+        }
+
+        function closePlayer() {
+            document.getElementById('player-container').style.display = 'none';
+        }
+
+        function handleImageError() {
+            const img = document.getElementById('photo');
+            img.src = "https://via.placeholder.com/600x400?text=Imagem+Não+Disponível";
+            document.getElementById('error-message').innerText = "Erro ao carregar a imagem. Verifique o caminho do arquivo ou o formato.";
+        }
+    </script>
+</body>
+</html>
