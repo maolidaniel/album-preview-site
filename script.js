@@ -55,17 +55,23 @@ function showPlayer(musicKey) {
 }
 
 function closePlayer() {
-  document.getElementById('player-container').style.display = 'none';
+  const playerContainer = document.getElementById('player-container');
+  playerContainer.style.display = 'none';
   // Remover classe active de todos os itens de música
   const musicItems = document.querySelectorAll('.music-item');
   musicItems.forEach(item => item.classList.remove('active'));
 
   // Remover classes de menu e player flutuantes e resetar o top do player
   const musicList = document.querySelector('.music-list');
-  const playerContainer = document.getElementById('player-container');
   musicList.classList.remove('floating-menu');
   playerContainer.classList.remove('floating-player');
   playerContainer.style.top = "";
+
+  // Remover placeholders se existirem
+  const menuPlaceholder = document.getElementById('menu-placeholder');
+  if (menuPlaceholder) menuPlaceholder.parentNode.removeChild(menuPlaceholder);
+  const playerPlaceholder = document.getElementById('player-placeholder');
+  if (playerPlaceholder) playerPlaceholder.parentNode.removeChild(playerPlaceholder);
 }
 
 function handleImageError() {
@@ -96,28 +102,52 @@ document.addEventListener("DOMContentLoaded", function() {
   const img = document.getElementById('photo');
   img.addEventListener('error', handleImageError);
 
-  // Listener para scroll: torna o menu e o player flutuantes quando necessário
+  // Listener para scroll: torna o menu e o player flutuantes sem causar reposicionamento indesejado
   window.addEventListener('scroll', function() {
     const playerContainer = document.getElementById('player-container');
     const musicList = document.querySelector('.music-list');
-    
-    // Se o player estiver visível, aplicar o efeito de flutuação
+
     if (playerContainer.style.display === 'block') {
       if (playerContainer.getBoundingClientRect().top <= 0) {
+        // Cria placeholders para preservar o espaço na página
+        let menuPlaceholder = document.getElementById('menu-placeholder');
+        if (!menuPlaceholder) {
+          menuPlaceholder = document.createElement('div');
+          menuPlaceholder.id = 'menu-placeholder';
+          menuPlaceholder.style.height = musicList.offsetHeight + 'px';
+          musicList.parentNode.insertBefore(menuPlaceholder, musicList);
+        }
+        let playerPlaceholder = document.getElementById('player-placeholder');
+        if (!playerPlaceholder) {
+          playerPlaceholder = document.createElement('div');
+          playerPlaceholder.id = 'player-placeholder';
+          playerPlaceholder.style.height = playerContainer.offsetHeight + 'px';
+          playerContainer.parentNode.insertBefore(playerPlaceholder, playerContainer);
+        }
+
         musicList.classList.add('floating-menu');
         playerContainer.classList.add('floating-player');
-        // Posicionar o player logo abaixo do menu flutuante
+        // Posiciona o player logo abaixo do menu flutuante
         const menuHeight = musicList.offsetHeight;
         playerContainer.style.top = (20 + menuHeight + 20) + "px";
       } else {
         musicList.classList.remove('floating-menu');
         playerContainer.classList.remove('floating-player');
         playerContainer.style.top = "";
+        // Remove os placeholders se existirem
+        const menuPlaceholder = document.getElementById('menu-placeholder');
+        if (menuPlaceholder) menuPlaceholder.parentNode.removeChild(menuPlaceholder);
+        const playerPlaceholder = document.getElementById('player-placeholder');
+        if (playerPlaceholder) playerPlaceholder.parentNode.removeChild(playerPlaceholder);
       }
     } else {
       musicList.classList.remove('floating-menu');
       playerContainer.classList.remove('floating-player');
       playerContainer.style.top = "";
+      const menuPlaceholder = document.getElementById('menu-placeholder');
+      if (menuPlaceholder) menuPlaceholder.parentNode.removeChild(menuPlaceholder);
+      const playerPlaceholder = document.getElementById('player-placeholder');
+      if (playerPlaceholder) playerPlaceholder.parentNode.removeChild(playerPlaceholder);
     }
   });
 });
