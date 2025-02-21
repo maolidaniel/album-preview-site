@@ -60,18 +60,11 @@ function closePlayer() {
   // Remover classe active de todos os itens de música
   const musicItems = document.querySelectorAll('.music-item');
   musicItems.forEach(item => item.classList.remove('active'));
-
   // Remover classes de menu e player flutuantes e resetar o top do player
   const musicList = document.querySelector('.music-list');
   musicList.classList.remove('floating-menu');
   playerContainer.classList.remove('floating-player');
   playerContainer.style.top = "";
-
-  // Remover placeholders se existirem
-  const menuPlaceholder = document.getElementById('menu-placeholder');
-  if (menuPlaceholder) menuPlaceholder.parentNode.removeChild(menuPlaceholder);
-  const playerPlaceholder = document.getElementById('player-placeholder');
-  if (playerPlaceholder) playerPlaceholder.parentNode.removeChild(playerPlaceholder);
 }
 
 function handleImageError() {
@@ -81,15 +74,12 @@ function handleImageError() {
 }
 
 document.addEventListener("DOMContentLoaded", function() {
-  // Adicionar event listeners para os itens de música
+  // Event listeners para os itens de música
   const musicItems = document.querySelectorAll('.music-item');
   musicItems.forEach(item => {
     item.addEventListener('click', function() {
-      // Remover classe active de todos os itens
       musicItems.forEach(i => i.classList.remove('active'));
-      // Adicionar classe active ao item clicado
       item.classList.add('active');
-
       const musicKey = item.getAttribute('data-music-key');
       showPlayer(musicKey);
     });
@@ -102,52 +92,24 @@ document.addEventListener("DOMContentLoaded", function() {
   const img = document.getElementById('photo');
   img.addEventListener('error', handleImageError);
 
-  // Listener para scroll: torna o menu e o player flutuantes sem causar reposicionamento indesejado
+  // Listener para scroll: fixa o menu e o player sem alterar o fluxo da página
   window.addEventListener('scroll', function() {
-    const playerContainer = document.getElementById('player-container');
+    const photo = document.getElementById('photo');
     const musicList = document.querySelector('.music-list');
-
+    const playerContainer = document.getElementById('player-container');
+    
+    // Verifica se o player está ativo e se a foto já passou do topo da viewport
     if (playerContainer.style.display === 'block') {
-      if (playerContainer.getBoundingClientRect().top <= 0) {
-        // Cria placeholders para preservar o espaço na página
-        let menuPlaceholder = document.getElementById('menu-placeholder');
-        if (!menuPlaceholder) {
-          menuPlaceholder = document.createElement('div');
-          menuPlaceholder.id = 'menu-placeholder';
-          menuPlaceholder.style.height = musicList.offsetHeight + 'px';
-          musicList.parentNode.insertBefore(menuPlaceholder, musicList);
-        }
-        let playerPlaceholder = document.getElementById('player-placeholder');
-        if (!playerPlaceholder) {
-          playerPlaceholder = document.createElement('div');
-          playerPlaceholder.id = 'player-placeholder';
-          playerPlaceholder.style.height = playerContainer.offsetHeight + 'px';
-          playerContainer.parentNode.insertBefore(playerPlaceholder, playerContainer);
-        }
-
+      if (photo.getBoundingClientRect().top <= 0) {
         musicList.classList.add('floating-menu');
         playerContainer.classList.add('floating-player');
-        // Posiciona o player logo abaixo do menu flutuante
         const menuHeight = musicList.offsetHeight;
         playerContainer.style.top = (20 + menuHeight + 20) + "px";
       } else {
         musicList.classList.remove('floating-menu');
         playerContainer.classList.remove('floating-player');
         playerContainer.style.top = "";
-        // Remove os placeholders se existirem
-        const menuPlaceholder = document.getElementById('menu-placeholder');
-        if (menuPlaceholder) menuPlaceholder.parentNode.removeChild(menuPlaceholder);
-        const playerPlaceholder = document.getElementById('player-placeholder');
-        if (playerPlaceholder) playerPlaceholder.parentNode.removeChild(playerPlaceholder);
       }
-    } else {
-      musicList.classList.remove('floating-menu');
-      playerContainer.classList.remove('floating-player');
-      playerContainer.style.top = "";
-      const menuPlaceholder = document.getElementById('menu-placeholder');
-      if (menuPlaceholder) menuPlaceholder.parentNode.removeChild(menuPlaceholder);
-      const playerPlaceholder = document.getElementById('player-placeholder');
-      if (playerPlaceholder) playerPlaceholder.parentNode.removeChild(playerPlaceholder);
     }
   });
 });
