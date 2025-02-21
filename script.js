@@ -72,6 +72,11 @@ function closePlayer() {
   
   // Oculta o bloco da história da foto
   document.getElementById('photo-story').style.display = 'none';
+
+  // Remove o efeito flutuante da info, se ativo
+  const musicInfo = document.getElementById('music-info');
+  musicInfo.classList.remove('floating-info');
+  musicInfo.style.top = "";
 }
 
 function handleImageError() {
@@ -99,18 +104,31 @@ document.addEventListener("DOMContentLoaded", function() {
   // Listener para erro na imagem
   document.getElementById('photo').addEventListener('error', handleImageError);
 
-  // Listener para scroll: transforma o menu em flutuante quando o topo do player sai da viewport
+  // Listener para scroll: ajusta o menu flutuante e a informação flutuante
   window.addEventListener('scroll', function() {
     const player = document.getElementById('player-container');
     const musicList = document.querySelector('.music-list');
+    const musicInfo = document.getElementById('music-info');
     if (player.style.display === 'block') {
+      // Menu flutuante
       if (player.getBoundingClientRect().top <= 0) {
         musicList.classList.add('floating-menu');
       } else {
         musicList.classList.remove('floating-menu');
       }
+      // Informação flutuante: se #music-info estiver fora da viewport (top < 0), flutua à direita, abaixo do bloco da história da foto
+      if (musicInfo.getBoundingClientRect().top < 0) {
+        musicInfo.classList.add('floating-info');
+        const photoStory = document.getElementById('photo-story');
+        musicInfo.style.top = (20 + photoStory.offsetHeight + 10) + "px";
+      } else {
+        musicInfo.classList.remove('floating-info');
+        musicInfo.style.top = "";
+      }
     } else {
       musicList.classList.remove('floating-menu');
+      musicInfo.classList.remove('floating-info');
+      musicInfo.style.top = "";
     }
   });
 });
