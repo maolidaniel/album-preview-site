@@ -73,7 +73,7 @@ img {
   border-radius: 8px;
 }
 
-/* Estilo para a história da foto fixada no canto direito */
+/* Bloco fixo para a história da foto no canto direito - oculto inicialmente */
 .photo-story {
   position: fixed;
   top: 20px;
@@ -84,6 +84,7 @@ img {
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
   border-radius: 8px;
   text-align: left;
+  display: none;
 }
 
 .error {
