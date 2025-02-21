@@ -59,8 +59,13 @@ function closePlayer() {
   // Remover classe active de todos os itens de música
   const musicItems = document.querySelectorAll('.music-item');
   musicItems.forEach(item => item.classList.remove('active'));
-  // Também remover o menu flutuante
-  document.querySelector('.music-list').classList.remove('floating-menu');
+
+  // Remover classes de menu e player flutuantes e resetar o top do player
+  const musicList = document.querySelector('.music-list');
+  const playerContainer = document.getElementById('player-container');
+  musicList.classList.remove('floating-menu');
+  playerContainer.classList.remove('floating-player');
+  playerContainer.style.top = "";
 }
 
 function handleImageError() {
@@ -69,9 +74,8 @@ function handleImageError() {
   document.getElementById('error-message').innerText = "Erro ao carregar a imagem. Verifique o caminho do arquivo ou o formato.";
 }
 
-// Adicionar event listeners depois que o conteúdo da página estiver carregado
 document.addEventListener("DOMContentLoaded", function() {
-  // Event listeners para os itens de música
+  // Adicionar event listeners para os itens de música
   const musicItems = document.querySelectorAll('.music-item');
   musicItems.forEach(item => {
     item.addEventListener('click', function() {
@@ -92,19 +96,28 @@ document.addEventListener("DOMContentLoaded", function() {
   const img = document.getElementById('photo');
   img.addEventListener('error', handleImageError);
 
-  // Listener para scroll: transforma o menu em flutuante quando o topo do player sai da viewport
+  // Listener para scroll: torna o menu e o player flutuantes quando necessário
   window.addEventListener('scroll', function() {
     const playerContainer = document.getElementById('player-container');
     const musicList = document.querySelector('.music-list');
-    // Se o player estiver visível, aplica o menu flutuante
+    
+    // Se o player estiver visível, aplicar o efeito de flutuação
     if (playerContainer.style.display === 'block') {
       if (playerContainer.getBoundingClientRect().top <= 0) {
         musicList.classList.add('floating-menu');
+        playerContainer.classList.add('floating-player');
+        // Posicionar o player logo abaixo do menu flutuante
+        const menuHeight = musicList.offsetHeight;
+        playerContainer.style.top = (20 + menuHeight + 20) + "px";
       } else {
         musicList.classList.remove('floating-menu');
+        playerContainer.classList.remove('floating-player');
+        playerContainer.style.top = "";
       }
     } else {
       musicList.classList.remove('floating-menu');
+      playerContainer.classList.remove('floating-player');
+      playerContainer.style.top = "";
     }
   });
 });
