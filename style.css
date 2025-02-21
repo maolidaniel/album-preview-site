@@ -68,29 +68,22 @@ main {
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
-/* Nova área para a foto e a história */
-.photo-row {
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  margin-top: 20px;
-}
-
-.photo-row img {
-  width: auto;
-  max-width: 60%;
-  border-radius: 8px;
-}
-
-.photo-story {
-  margin-left: 20px;
-  text-align: left;
-  align-self: center;
-}
-
 img {
   width: 100%;
   border-radius: 8px;
+}
+
+/* Estilo para a história da foto fixada no canto direito */
+.photo-story {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  max-width: 200px;
+  background-color: #fff;
+  padding: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  border-radius: 8px;
+  text-align: left;
 }
 
 .error {
