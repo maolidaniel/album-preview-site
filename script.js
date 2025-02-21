@@ -32,7 +32,7 @@ function showPlayer(musicKey) {
   const player = document.getElementById('player-container');
   const data = musicData[musicKey];
 
-  // Seleção de imagem aleatória simplificada
+  // Seleção aleatória de imagem
   const randomIndex = Math.floor(Math.random() * photos.length);
   const randomPhoto = photos[randomIndex];
 
@@ -57,15 +57,13 @@ function closePlayer() {
   const playerContainer = document.getElementById('player-container');
   playerContainer.style.display = 'none';
   
-  // Remover classe active de todos os itens de música
+  // Remove classe active dos itens de música
   const musicItems = document.querySelectorAll('.music-item');
   musicItems.forEach(item => item.classList.remove('active'));
 
-  // Remover classes de menu e player flutuantes e resetar o top do player
+  // Remove a classe do menu flutuante, se estiver ativa
   const musicList = document.querySelector('.music-list');
   musicList.classList.remove('floating-menu');
-  playerContainer.classList.remove('floating-player');
-  playerContainer.style.top = "";
 }
 
 function handleImageError() {
@@ -75,7 +73,7 @@ function handleImageError() {
 }
 
 document.addEventListener("DOMContentLoaded", function() {
-  // Configurar os event listeners para os itens de música
+  // Configura os event listeners para os itens de música
   const musicItems = document.querySelectorAll('.music-item');
   musicItems.forEach(item => {
     item.addEventListener('click', function() {
@@ -92,24 +90,19 @@ document.addEventListener("DOMContentLoaded", function() {
   // Listener para erro na imagem
   document.getElementById('photo').addEventListener('error', handleImageError);
 
-  // Listener para scroll: fixa o menu e o player quando o player atingir o topo da viewport
+  // Listener para scroll: fixa o menu de músicas quando o player estiver ativo e o topo dele atingir 20px da viewport
   window.addEventListener('scroll', function() {
     const playerContainer = document.getElementById('player-container');
     const musicList = document.querySelector('.music-list');
 
     if (playerContainer.style.display === 'block') {
-      // Se o player estiver visível e seu topo estiver próximo do início da viewport:
       if (playerContainer.getBoundingClientRect().top <= 20) {
         musicList.classList.add('floating-menu');
-        playerContainer.classList.add('floating-player');
-        const menuHeight = musicList.offsetHeight;
-        // Posiciona o player logo abaixo do menu fixo (gap de 10px)
-        playerContainer.style.top = (20 + menuHeight + 10) + "px";
       } else {
         musicList.classList.remove('floating-menu');
-        playerContainer.classList.remove('floating-player');
-        playerContainer.style.top = "";
       }
+    } else {
+      musicList.classList.remove('floating-menu');
     }
   });
 });
