@@ -30,7 +30,6 @@ main {
   max-width: 220px;
   width: 100%;
   z-index: 1000;
-  margin: 0;
   text-align: left;
   background-color: #fff;
   padding: 10px;
@@ -38,14 +37,13 @@ main {
   border-radius: 8px;
 }
 
-/* Novo estilo para o player flutuante */
+/* Estilo para o player flutuante */
 .floating-player {
   position: fixed;
   left: 20px;
   z-index: 1000;
   max-width: 220px;
   width: 100%;
-  margin: 0;
   background-color: #fff;
   padding: 10px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
