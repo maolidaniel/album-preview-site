@@ -23,10 +23,10 @@ const photos = [
   { src: "./images/IMG_1708.JPG", story: "Forfun - Turnê Nós - Allianz - Duran" },
   { src: "./images/IMG_0187.JPG", story: "Mais uma noite normal pela Augusta" },
   { src: "./images/IMG_9478.JPG", story: "Cheetos!!" },
-  { src: "./images/IMG_2724.JPG", story: "Paris, Çava!!" },
-  { src: "./images/IMG_3689.JPG", story: "Muito amor em Paris kkkkk" },
-  { src: "./images/IMG_4138.JPG", story: "Primeira noite em Barcelona" },
-  { src: "./images/IMG_4187.JPG", story: "Jogue o lixo no lixo. Barcelona, 2023." }
+  { src: "./images/IMG_2724.jpg", story: "Paris, Çava!!" },
+  { src: "./images/IMG_3689.jpg", story: "Muito amor em Paris kkkkk" },
+  { src: "./images/IMG_4138.jpg", story: "Primeira noite em Barcelona" },
+  { src: "./images/IMG_4187.jpg", story: "Jogue o lixo no lixo. Barcelona, 2023." }
 ];
 
 function showPlayer(musicKey) {
