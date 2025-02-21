@@ -68,32 +68,12 @@ main {
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
-/* Container para as informações de música (título e descrição) */
-#music-info {
-  text-align: left;
-  margin-bottom: 20px;
-}
-
-/* Estilo para a informação flutuante – quando o conteúdo não é visível */
-.floating-info {
-  position: fixed;
-  right: 240px; /* Deixa espaço para a foto-story */
-  background-color: #fff;
-  padding: 10px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  border-radius: 8px;
-  max-width: 300px;
-  text-align: left;
-  z-index: 1000;
-}
-
-/* A imagem ocupa toda a largura do espaço do player */
 img {
   width: 100%;
   border-radius: 8px;
 }
 
-/* Bloco fixo para a história da foto no canto direito (inicia oculto) */
+/* Bloco fixo para a história da foto no canto direito - oculto inicialmente */
 .photo-story {
   position: fixed;
   top: 20px;
