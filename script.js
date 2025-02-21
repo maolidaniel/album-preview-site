@@ -1,4 +1,3 @@
-
 const musicData = {
   backInLove: {
     title: "Back In Love",
@@ -23,10 +22,10 @@ const photos = [
   { src: "./images/IMG_1708.JPG", story: "Forfun - Turnê Nós - Allianz - Duran" },
   { src: "./images/IMG_0187.JPG", story: "Mais uma noite normal pela Augusta" },
   { src: "./images/IMG_9478.JPG", story: "Cheetos!!" },
-  { src: "./images/IMG_2724.jpg", story: "Paris, Çava!!" },
-  { src: "./images/IMG_3689.jpg", story: "Muito amor em Paris kkkkk" },
-  { src: "./images/IMG_4138.jpg", story: "Primeira noite em Barcelona" },
-  { src: "./images/IMG_4187.jpg", story: "Jogue o lixo no lixo. Barcelona, 2023." }
+  { src: "./images/IMG_2724.JPG", story: "Paris, Çava!!" },
+  { src: "./images/IMG_3689.JPG", story: "Muito amor em Paris kkkkk" },
+  { src: "./images/IMG_4138.JPG", story: "Primeira noite em Barcelona" },
+  { src: "./images/IMG_4187.JPG", story: "Jogue o lixo no lixo. Barcelona, 2023." }
 ];
 
 function showPlayer(musicKey) {
@@ -60,6 +59,8 @@ function closePlayer() {
   // Remover classe active de todos os itens de música
   const musicItems = document.querySelectorAll('.music-item');
   musicItems.forEach(item => item.classList.remove('active'));
+  // Também remover o menu flutuante
+  document.querySelector('.music-list').classList.remove('floating-menu');
 }
 
 function handleImageError() {
@@ -70,7 +71,7 @@ function handleImageError() {
 
 // Adicionar event listeners depois que o conteúdo da página estiver carregado
 document.addEventListener("DOMContentLoaded", function() {
-  // Adicionar event listeners para os itens de música
+  // Event listeners para os itens de música
   const musicItems = document.querySelectorAll('.music-item');
   musicItems.forEach(item => {
     item.addEventListener('click', function() {
@@ -84,10 +85,26 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   });
 
-  // Adicionar event listener para o botão fechar
+  // Event listener para o botão fechar
   document.getElementById('close-player').addEventListener('click', closePlayer);
 
-  // Adicionar event listener para erro na imagem
+  // Event listener para erro na imagem
   const img = document.getElementById('photo');
   img.addEventListener('error', handleImageError);
+
+  // Listener para scroll: transforma o menu em flutuante quando o topo do player sai da viewport
+  window.addEventListener('scroll', function() {
+    const playerContainer = document.getElementById('player-container');
+    const musicList = document.querySelector('.music-list');
+    // Se o player estiver visível, aplica o menu flutuante
+    if (playerContainer.style.display === 'block') {
+      if (playerContainer.getBoundingClientRect().top <= 0) {
+        musicList.classList.add('floating-menu');
+      } else {
+        musicList.classList.remove('floating-menu');
+      }
+    } else {
+      musicList.classList.remove('floating-menu');
+    }
+  });
 });
