@@ -68,7 +68,7 @@ main {
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
-/* As imagens em P&B */
+/* Imagens em preto e branco com transição */
 img {
   width: 100%;
   border-radius: 8px;
@@ -99,7 +99,7 @@ img:hover {
   font-weight: bold;
 }
 
-/* Novo: Estilo para a descrição da música flutuante */
+/* Novo: Estilo para a descrição da música quando flutuante */
 .floating-music-description {
   position: fixed;
   top: 20px;
@@ -111,4 +111,13 @@ img:hover {
   max-width: 300px;
   text-align: left;
   z-index: 1000;
+}
+
+/* Estilo aprimorado para a descrição da música para melhor leitura */
+#music-description {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #333;
+  text-align: left;
+  margin-top: 10px;
 }
