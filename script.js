@@ -87,7 +87,7 @@ function showPlayer(musicKey) {
     updatePhoto();
   }, 6000);
 
-  // Exibe o bloco de história da foto (agora no rodapé)
+  // Exibe o bloco de história da foto (no rodapé)
   document.getElementById('photo-story').style.display = 'block';
 
   // Desce a página automaticamente até o final
@@ -110,7 +110,7 @@ function closePlayer() {
 function handleImageError() {
   const img = document.getElementById('photo');
   img.src = "https://via.placeholder.com/600x400?text=Imagem+Não+Dispon%C3%ADvel";
-  document.getElementById('error-message').innerText = "Erro ao carregar a imagem. Verifique o caminho do arquivo ou o formato.";
+  document.getElementById('error-message').innerText = "Erro ao carregar o áudio. Verifique o caminho do arquivo ou o formato.";
 }
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -138,6 +138,18 @@ document.addEventListener("DOMContentLoaded", function() {
       }
     } else {
       musicList.classList.remove('floating-menu');
+    }
+
+    // Novo: Ajusta a posição da descrição da música
+    const musicDescription = document.getElementById('music-description');
+    if (player.style.display === 'block') {
+      if (musicDescription.getBoundingClientRect().top < 0) {
+        musicDescription.classList.add('floating-music-description');
+      } else {
+        musicDescription.classList.remove('floating-music-description');
+      }
+    } else {
+      musicDescription.classList.remove('floating-music-description');
     }
   });
 });
