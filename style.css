@@ -68,7 +68,7 @@ main {
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
-/* As imagens ficarão em preto e branco por padrão e voltarão a cor no hover */
+/* As imagens em P&B */
 img {
   width: 100%;
   border-radius: 8px;
@@ -80,7 +80,7 @@ img:hover {
   filter: grayscale(0%);
 }
 
-/* Bloco fixo para a história da foto – agora no rodapé (canto inferior direito) */
+/* Bloco fixo para a história da foto – no rodapé (canto inferior direito) */
 .photo-story {
   position: fixed;
   bottom: 20px;
@@ -97,4 +97,19 @@ img:hover {
 .error {
   color: red;
   font-weight: bold;
+}
+
+/* Novo: Estilo para a descrição da música flutuante */
+.floating-music-description {
+  position: fixed;
+  top: 50%; /* Aproximadamente no meio da tela */
+  right: 240px; /* Espaço à esquerda da caixa da história da foto */
+  transform: translateY(-50%);
+  background-color: #fff;
+  padding: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  border-radius: 8px;
+  max-width: 300px;
+  text-align: left;
+  z-index: 1000;
 }
