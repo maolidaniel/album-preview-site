@@ -130,6 +130,9 @@ document.addEventListener("DOMContentLoaded", function() {
   window.addEventListener('scroll', function() {
     const player = document.getElementById('player-container');
     const musicList = document.querySelector('.music-list');
+    const musicDescription = document.getElementById('music-description');
+
+    // Ajusta o menu flutuante
     if (player.style.display === 'block') {
       if (player.getBoundingClientRect().top <= 0) {
         musicList.classList.add('floating-menu');
@@ -140,10 +143,9 @@ document.addEventListener("DOMContentLoaded", function() {
       musicList.classList.remove('floating-menu');
     }
 
-    // Novo: Ajusta a posição da descrição da música
-    const musicDescription = document.getElementById('music-description');
+    // Se a descrição da música estiver acima de 20px do topo, a fixa no canto superior direito
     if (player.style.display === 'block') {
-      if (musicDescription.getBoundingClientRect().top < 0) {
+      if (musicDescription.getBoundingClientRect().top < 20) {
         musicDescription.classList.add('floating-music-description');
       } else {
         musicDescription.classList.remove('floating-music-description');
