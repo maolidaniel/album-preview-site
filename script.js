@@ -40,7 +40,7 @@ const photos = [
   { src: "./images/Amsterdam05.jpg", story: "Uma noite muito engraçada em Amsterdam." },
   { src: "./images/Amsterdam06.jpg", story: "Procurando a Pomba Holandesa." },
   { src: "./images/Tomorrow01.jpg", story: "Três!! Tomorrowland Brasil 2023 e uma resenha incrível de fim de rolê." },
-  { src: "./images/Paris01.jpg", story: "20 anos não são 20 dias. Paris, Outubro de 2023." },
+  { src: "./images/Paris01.JPG", story: "20 anos não são 20 dias. Paris, Outubro de 2023." },
   { src: "./images/Amsterdam01.jpg", story: "We found love here in Amsterdam." },
   { src: "./images/Amsterdam02.jpg", story: "Coffeeshops and hidden gems - Amsterdam 2023" },
   { src: "./images/Barcelona01.jpg", story: "Barcelona x Real Madrid. Sonho de infância!" },
