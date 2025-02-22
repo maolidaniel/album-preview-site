@@ -1,3 +1,6 @@
+let slideshowInterval = null;
+let currentPhotoIndex = 0;
+
 const musicData = {
   backInLove: {
     title: "Back In Love",
@@ -28,19 +31,21 @@ const photos = [
   { src: "./images/IMG_4187.jpg", story: "Jogue o lixo no lixo. Barcelona, 2023." }
 ];
 
+function updatePhoto() {
+  const photo = document.getElementById('photo');
+  const photoStory = document.getElementById('photo-story');
+  const currentPhoto = photos[currentPhotoIndex];
+  photo.src = currentPhoto.src;
+  photo.alt = "Imagem relacionada à " + document.getElementById('music-title').innerText;
+  photoStory.innerText = currentPhoto.story;
+}
+
 function showPlayer(musicKey) {
   const player = document.getElementById('player-container');
   const data = musicData[musicKey];
 
-  // Seleção de imagem aleatória simplificada
-  const randomIndex = Math.floor(Math.random() * photos.length);
-  const randomPhoto = photos[randomIndex];
-
   document.getElementById('music-title').innerText = data.title;
   document.getElementById('audio-source').src = data.audio;
-  document.getElementById('photo').src = randomPhoto.src;
-  document.getElementById('photo').alt = "Imagem relacionada à " + data.title;
-  document.getElementById('photo-story').innerText = randomPhoto.story;
   document.getElementById('music-description').innerText = data.description;
   document.getElementById('error-message').innerText = "";
 
@@ -51,7 +56,23 @@ function showPlayer(musicKey) {
   };
 
   player.style.display = 'block';
-  // Exibe o bloco da história da foto somente após o clique na música
+
+  // Limpa qualquer slideshow já existente
+  if (slideshowInterval) {
+    clearInterval(slideshowInterval);
+    slideshowInterval = null;
+  }
+
+  // Inicia o slideshow com uma foto aleatória
+  currentPhotoIndex = Math.floor(Math.random() * photos.length);
+  updatePhoto();
+
+  slideshowInterval = setInterval(() => {
+    currentPhotoIndex = (currentPhotoIndex + 1) % photos.length;
+    updatePhoto();
+  }, 6000);
+
+  // Exibe o bloco de história da foto (agora no rodapé)
   document.getElementById('photo-story').style.display = 'block';
 
   // Desce a página automaticamente até o final
@@ -59,19 +80,16 @@ function showPlayer(musicKey) {
 }
 
 function closePlayer() {
-  const player = document.getElementById('player-container');
-  player.style.display = 'none';
-  
-  // Remove classe active de todos os itens de música
+  document.getElementById('player-container').style.display = 'none';
   const musicItems = document.querySelectorAll('.music-item');
   musicItems.forEach(item => item.classList.remove('active'));
-  
-  // Remove o menu flutuante, se estiver ativo
-  const musicList = document.querySelector('.music-list');
-  musicList.classList.remove('floating-menu');
-  
-  // Oculta o bloco da história da foto
+  document.querySelector('.music-list').classList.remove('floating-menu');
   document.getElementById('photo-story').style.display = 'none';
+
+  if (slideshowInterval) {
+    clearInterval(slideshowInterval);
+    slideshowInterval = null;
+  }
 }
 
 function handleImageError() {
@@ -81,25 +99,19 @@ function handleImageError() {
 }
 
 document.addEventListener("DOMContentLoaded", function() {
-  // Configura os event listeners para os itens de música
   const musicItems = document.querySelectorAll('.music-item');
   musicItems.forEach(item => {
     item.addEventListener('click', function() {
       musicItems.forEach(i => i.classList.remove('active'));
       item.classList.add('active');
-
       const musicKey = item.getAttribute('data-music-key');
       showPlayer(musicKey);
     });
   });
 
-  // Listener para o botão fechar
   document.getElementById('close-player').addEventListener('click', closePlayer);
-
-  // Listener para erro na imagem
   document.getElementById('photo').addEventListener('error', handleImageError);
 
-  // Listener para scroll: transforma o menu em flutuante quando o topo do player sai da viewport
   window.addEventListener('scroll', function() {
     const player = document.getElementById('player-container');
     const musicList = document.querySelector('.music-list');
