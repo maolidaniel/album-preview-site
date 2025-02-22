@@ -22,7 +22,7 @@ main {
   transition: all 0.3s ease;
 }
 
-/* Estilo para o menu flutuante */
+/* Estilo para o menu flutuante (desktop) */
 .floating-menu {
   position: fixed;
   top: 20px;
@@ -68,7 +68,7 @@ main {
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
-/* Exibição padrão das imagens sem altura fixa */
+/* Exibição padrão das imagens */
 img {
   width: 100%;
   border-radius: 8px;
@@ -97,4 +97,35 @@ img:hover {
 .error {
   color: red;
   font-weight: bold;
+}
+
+/* Media Query para dispositivos móveis */
+@media (max-width: 768px) {
+  /* Reduz a largura máxima para aproveitar melhor a tela */
+  .music-list, .player-container {
+    max-width: 100%;
+    margin: 10px auto;
+    padding: 10px;
+  }
+  
+  /* Remove o comportamento flutuante do menu em mobile */
+  .floating-menu {
+    position: static;
+    box-shadow: none;
+    margin: 10px auto;
+  }
+  
+  /* Ajusta a imagem para ocupar a largura da tela */
+  img {
+    width: 100%;
+    height: auto;
+  }
+  
+  /* Exibe a história da foto de forma estática abaixo do player */
+  .photo-story {
+    position: static;
+    max-width: 100%;
+    margin: 10px auto;
+    box-shadow: none;
+  }
 }
