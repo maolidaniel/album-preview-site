@@ -63,3 +63,38 @@ main {
   margin: 20px auto;
   max-width: 600px;
   background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Exibição padrão das imagens sem altura fixa */
+img {
+  width: 100%;
+  border-radius: 8px;
+  filter: grayscale(100%);
+  transition: filter 0.3s;
+}
+
+img:hover {
+  filter: grayscale(0%);
+}
+
+/* Bloco fixo para a história da foto – no rodapé (canto inferior direito) */
+.photo-story {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  max-width: 200px;
+  background-color: #fff;
+  padding: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  border-radius: 8px;
+  text-align: left;
+  display: none;
+}
+
+.error {
+  color: red;
+  font-weight: bold;
+}
