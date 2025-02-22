@@ -10,10 +10,12 @@ header {
   background-color: #222;
   color: #fff;
   padding: 20px;
+  text-align: center;
 }
 
 main {
   padding: 20px;
+  text-align: center;
 }
 
 .music-list {
@@ -31,7 +33,7 @@ main {
   width: 100%;
   z-index: 1000;
   margin: 0;
-  text-align: left;
+  text-align: center;
   background-color: #fff;
   padding: 10px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
@@ -46,6 +48,7 @@ main {
   cursor: pointer;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
   transition: background-color 0.3s, transform 0.3s;
+  text-align: center;
 }
 
 .music-item:hover {
@@ -66,6 +69,7 @@ main {
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  text-align: center;
 }
 
 /* Exibição padrão das imagens */
@@ -90,19 +94,27 @@ img:hover {
   padding: 10px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
   border-radius: 8px;
-  text-align: left;
+  text-align: center;
   display: none;
 }
 
 .error {
   color: red;
   font-weight: bold;
+  text-align: center;
+}
+
+/* Estilo aprimorado para a descrição da música para melhor leitura e centralização */
+#music-title,
+#music-description {
+  text-align: center;
 }
 
 /* Media Query para dispositivos móveis */
 @media (max-width: 768px) {
-  /* Reduz a largura máxima para aproveitar melhor a tela */
-  .music-list, .player-container {
+  /* Ajusta larguras e margens para aproveitar a tela */
+  .music-list, 
+  .player-container {
     max-width: 100%;
     margin: 10px auto;
     padding: 10px;
@@ -113,9 +125,10 @@ img:hover {
     position: static;
     box-shadow: none;
     margin: 10px auto;
+    text-align: center;
   }
   
-  /* Ajusta a imagem para ocupar a largura da tela */
+  /* Ajusta a exibição da imagem para ocupar a largura da tela */
   img {
     width: 100%;
     height: auto;
@@ -127,5 +140,6 @@ img:hover {
     max-width: 100%;
     margin: 10px auto;
     box-shadow: none;
+    text-align: center;
   }
 }
