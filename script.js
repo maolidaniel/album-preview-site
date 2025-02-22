@@ -31,7 +31,7 @@ const photos = [
   { src: "./images/IMG_4187.jpg", story: "Jogue o lixo no lixo. Barcelona, 2023." },
   { src: "./images/Maceio02.JPG", story: "Com meu pai em Maceió - Julho de 2023." },
   { src: "./images/VoAnna.JPG", story: "Com a minha vó Anna, minha irmã Julia e minha prima Dani. Uma última visita." },
-  { src: "./images/Lolla.JPG", story: "Lollapalooza 2023 - O início do mês Skrillex. Fui muito feliz!" },
+  { src: "./images/Lolla01.JPG", story: "Lollapalooza 2023 - O início do mês Skrillex. Fui muito feliz!" },
   { src: "./images/BirthMay01.JPG", story: "Comemorando 28 anos daquele jeitinho." },
   { src: "./images/Maceio01.JPG", story: "Com meu irmão Rafa em Maceió, Julho de 2023." },
   { src: "./images/Amsterdam03.jpg", story: "Martin Garrix, cade você?" },
