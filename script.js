@@ -5,17 +5,17 @@ const musicData = {
   backInLove: {
     title: "Back In Love",
     audio: "./music/Daniel_Maoli_Back_in_Love.mp3",
-    description: "Back In Love é sobre se apaixonar novamente por um amor antigo."
+    description: "Back In Love é uma música sobre a beleza e a vulnerabilidade de se apaixonar novamente. Com uma mistura de leveza e sinceridade, ela explora aquele momento de dúvida e esperança ao se reconectar com alguém especial. Entre questionamentos e confissões, a canção transmite o desejo de reviver sentimentos intensos, como se estivesse caminhando por uma rua romântica em Paris, buscando a certeza de que o amor ainda está lá."
   },
   backToYou: {
     title: "Back To You",
     audio: "./music/Daniel_Maoli_Back_To_You.mp3",
-    description: "Back To You fala sobre os sentimentos de um término de relacionamento e a vontade de querer reviver o que era bom dessa história."
+    description: "Back To You fala sobre os sentimentos de um término de relacionamento e a vontade de querer reviver o que era bom dessa história. A música narra a história de alguém que terminou uma relação, mas carrega o peso da decisão e o medo de não ter feito a melhor escolha. Em meio a lembranças e incertezas, a canção reflete sobre arrependimento, saudade e a esperança de reviver uma história que não terminou como deveria."
   },
   amsterdam: {
     title: "Amsterdam",
     audio: "./music/Daniel_Maoli_Amsterdam.mp3",
-    description: "Amsterdam é uma homenagem à cidade e à viagem feita com amigos. Criada de forma despretensiosa durante uma noite divertida, a música celebra a espontaneidade e os momentos inesquecíveis vividos lá."
+    description: "Amsterdam é uma celebração da liberdade, da amizade e das aventuras inesperadas em uma cidade cheia de histórias. Criada em uma madrugada despreocupada entre amigos durante uma viagem para Amsterdam, a música capta o clima leve e caótico de noites sem hora para acabar — entre ruas de paralelepípedos, canais iluminados e a energia vibrante que só Amsterdam tem. Com uma mistura de euforia e nostalgia, ela retrata aqueles momentos em que o tempo parece parar, e tudo o que importa é se perder na cidade e viver intensamente o agora."
   }
 };
 
