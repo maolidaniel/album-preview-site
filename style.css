@@ -22,7 +22,7 @@ main {
   transition: all 0.3s ease;
 }
 
-/* Estilo para o menu flutuante (desktop) */
+/* Atualização: Menu flutuante centralizado */
 .floating-menu {
   position: fixed;
   top: 20px;
@@ -31,7 +31,7 @@ main {
   width: 100%;
   z-index: 1000;
   margin: 0;
-  text-align: left;
+  text-align: center; /* Centraliza os textos do menu */
   background-color: #fff;
   padding: 10px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
@@ -46,6 +46,7 @@ main {
   cursor: pointer;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
   transition: background-color 0.3s, transform 0.3s;
+  text-align: center; /* Centraliza o texto dos itens */
 }
 
 .music-item:hover {
@@ -68,7 +69,7 @@ main {
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
-/* Exibição padrão das imagens */
+/* Exibição padrão das imagens sem altura fixa */
 img {
   width: 100%;
   border-radius: 8px;
@@ -80,7 +81,8 @@ img:hover {
   filter: grayscale(0%);
 }
 
-/* Bloco fixo para a história da foto – no rodapé (canto inferior direito) */
+/* Bloco fixo para a história da foto – no rodapé (canto inferior direito),
+   centralizado */
 .photo-story {
   position: fixed;
   bottom: 20px;
@@ -90,42 +92,17 @@ img:hover {
   padding: 10px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
   border-radius: 8px;
-  text-align: left;
+  text-align: center;
   display: none;
 }
 
 .error {
   color: red;
   font-weight: bold;
+  text-align: center;
 }
 
-/* Media Query para dispositivos móveis */
-@media (max-width: 768px) {
-  /* Reduz a largura máxima para aproveitar melhor a tela */
-  .music-list, .player-container {
-    max-width: 100%;
-    margin: 10px auto;
-    padding: 10px;
-  }
-  
-  /* Remove o comportamento flutuante do menu em mobile */
-  .floating-menu {
-    position: static;
-    box-shadow: none;
-    margin: 10px auto;
-  }
-  
-  /* Ajusta a imagem para ocupar a largura da tela */
-  img {
-    width: 100%;
-    height: auto;
-  }
-  
-  /* Exibe a história da foto de forma estática abaixo do player */
-  .photo-story {
-    position: static;
-    max-width: 100%;
-    margin: 10px auto;
-    box-shadow: none;
-  }
+/* Estilos para as informações do player (título e descrição) centralizados */
+#music-title, #music-description {
+  text-align: center;
 }
