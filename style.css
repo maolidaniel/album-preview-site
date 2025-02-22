@@ -102,9 +102,8 @@ img:hover {
 /* Novo: Estilo para a descrição da música flutuante */
 .floating-music-description {
   position: fixed;
-  top: 50%; /* Aproximadamente no meio da tela */
-  right: 240px; /* Espaço à esquerda da caixa da história da foto */
-  transform: translateY(-50%);
+  top: 20px;
+  right: 20px;
   background-color: #fff;
   padding: 10px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
