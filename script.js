@@ -1,5 +1,6 @@
 let slideshowInterval = null;
 let currentPhotoIndex = 0;
+let musicDescriptionThreshold = null; // Variável para armazenar o limite da descrição
 
 const musicData = {
   backInLove: {
@@ -72,6 +73,10 @@ function showPlayer(musicKey) {
 
   player.style.display = 'block';
 
+  // Registra a posição original da descrição da música para usar como threshold
+  const musicDescription = document.getElementById('music-description');
+  musicDescriptionThreshold = musicDescription.getBoundingClientRect().top + window.scrollY;
+
   // Limpa qualquer slideshow já existente
   if (slideshowInterval) {
     clearInterval(slideshowInterval);
@@ -143,9 +148,9 @@ document.addEventListener("DOMContentLoaded", function() {
       musicList.classList.remove('floating-menu');
     }
 
-    // Se a descrição da música estiver acima de 20px do topo, a fixa no canto superior direito
+    // Usa o threshold registrado para fixar a descrição no canto superior direito
     if (player.style.display === 'block') {
-      if (musicDescription.getBoundingClientRect().top < 20) {
+      if (window.scrollY > (musicDescriptionThreshold - 20)) {
         musicDescription.classList.add('floating-music-description');
       } else {
         musicDescription.classList.remove('floating-music-description');
